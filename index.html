@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SandQeen1111 — IT Engineer, Quant Developer & ML Specialist. Portfolio showcasing algorithmic trading systems, machine learning pipelines, and the Black Swan programming language.">
+    <meta name="keywords" content="IT Engineer, Quant Developer, Machine Learning, Algorithmic Trading, Python, PyTorch, ONNX, TensorRT, Black Swan">
+    <meta name="author" content="SandQeen1111">
+    <meta property="og:title" content="SandQeen1111 — IT Engineer | Quant Developer">
+    <meta property="og:description" content="Portfolio & Project Showcase — ML Pipelines, Algorithmic Trading Systems, Black Swan Language">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sandqeen1111.github.io">
+    <title>SandQeen1111 — IT Engineer | Quant Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #07080c;
+            --bg-secondary: #0d0f16;
+            --bg-card: #11131c;
+            --border-color: #1a1d2e;
+            --accent-burgundy: #8b1a3a;
+            --accent-burgundy-glow: #c4264a;
+            --accent-blue: #1e3a6e;
+            --accent-blue-glow: #3b7ddd;
+            --text-primary: #e8e6e3;
+            --text-secondary: #8a8d9b;
+            --text-dim: #4a4d5e;
+            --terminal-green: #4ade80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ═══════════ PARTICLE CANVAS ═══════════ */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ═══════════ NAVIGATION ═══════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(7, 8, 12, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-burgundy-glow);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-burgundy-glow);
+        }
+
+        /* ═══════════ HERO SECTION ═══════════ */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 8%;
+        }
+
+        .hero-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-burgundy-glow);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.5s forwards;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent-burgundy-glow), #e84a72, var(--accent-blue-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.7s forwards;
+        }
+
+        /* ═══════════ TERMINAL ═══════════ */
+        .terminal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            max-width: 650px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.9s forwards;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-line {
+            margin-bottom: 0.4rem;
+            color: var(--text-secondary);
+        }
+
+        .terminal-line .prompt {
+            color: var(--terminal-green);
+        }
+
+        .terminal-line .cmd {
+            color: var(--text-primary);
+        }
+
+        .terminal-line .output {
+            color: var(--text-dim);
+            padding-left: 1rem;
+        }
+
+        #typewriter {
+            display: inline;
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--terminal-green);
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        /* ═══════════ SECTIONS ═══════════ */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 8%;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-burgundy);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        /* ═══════════ PROJECT CARDS ═══════════ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-burgundy-glow), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-burgundy);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(139, 26, 58, 0.1);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            padding: 0.3rem 0.7rem;
+            background: rgba(139, 26, 58, 0.12);
+            border: 1px solid rgba(139, 26, 58, 0.25);
+            border-radius: 4px;
+            color: var(--accent-burgundy-glow);
+            letter-spacing: 0.5px;
+        }
+
+        /* ═══════════ SKILLS SECTION ═══════════ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-group h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-blue-glow);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skill-item {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0.4rem 0;
+            transition: color 0.3s;
+        }
+
+        .skill-item:hover {
+            color: var(--text-primary);
+        }
+
+        .skill-item::before {
+            content: '▸ ';
+            color: var(--accent-burgundy);
+        }
+
+        /* ═══════════ CONTACT ═══════════ */
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-burgundy-glow);
+            color: var(--accent-burgundy-glow);
+            background: rgba(139, 26, 58, 0.08);
+        }
+
+        /* ═══════════ FOOTER ═══════════ */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
+
+        /* ═══════════ ANIMATIONS ═══════════ */
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* ═══════════ SCROLL REVEAL ═══════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════ RESPONSIVE ═══════════ */
+        @media (max-width: 768px) {
+            nav { padding: 1rem; }
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.7rem; }
+            section { padding: 4rem 5%; }
+            .hero { padding: 0 5%; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .terminal { font-size: 0.75rem; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav>
+        <a href="#" class="nav-logo">SQ1111</a>
+        <ul class="nav-links">
+            <li><a href="#projects">Projekte</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero">
+        <div class="hero-tag">// IT Engineer &amp; Quant Developer</div>
+        <h1>Building the<br><span class="gradient-text">Future of Trading</span></h1>
+        <p class="hero-sub">ML Pipelines, algorithmische Handelssysteme und eine eigene Programmiersprache — von der Idee bis zur Produktion.</p>
+
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+            </div>
+            <div class="terminal-line"><span class="prompt">sandqeen@dev</span> <span class="cmd">~ $ whoami</span></div>
+            <div class="terminal-line"><span class="output">IT Engineer | Quant Developer | ML Specialist</span></div>
+            <div class="terminal-line"><span class="prompt">sandqeen@dev</span> <span class="cmd">~ $ cat current_stack.txt</span></div>
+            <div class="terminal-line"><span class="output">Python · PyTorch · ONNX · TensorRT · REST APIs</span></div>
+            <div class="terminal-line"><span class="prompt">sandqeen@dev</span> <span class="cmd">~ $ </span><span id="typewriter"></span><span class="cursor-blink"></span></div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PROJECTS ═══════════ -->
+    <section id="projects">
+        <div class="reveal">
+            <div class="section-label">// 01 — Projekte</div>
+            <h2 class="section-title">Was ich baue</h2>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <div class="project-icon">🧠</div>
+                <h3>PyTorch → ONNX Pipeline</h3>
+                <p>End-to-End ML Deployment: Modelle trainieren, nach ONNX exportieren und mit TensorRT für Echtzeit-Inferenz optimieren.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">ONNX</span>
+                    <span class="tech-tag">TensorRT</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-icon">🦢</div>
+                <h3>Black Swan</h3>
+                <p>Eine deutsche Programmiersprache die nach Python transpiliert. Deutsche Syntax, volle Python-Power.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Transpiler</span>
+                    <span class="tech-tag">Lexer/Parser</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Deutsch</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-icon">📊</div>
+                <h3>Algorithmic Trading Systems</h3>
+                <p>Automatisierte Handelsbots für Krypto-Futures mit technischer Analyse, Risikomanagement und API-Integration.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Trading Bots</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">RSI/Fibonacci</span>
+                    <span class="tech-tag">Risk Mgmt</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-icon">⚡</div>
+                <h3>Realtime Classifier API</h3>
+                <p>Hochperformante REST API für Echtzeit-Klassifikation mit optimierten ML-Modellen und Sub-Millisekunden Latenz.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">ONNX Runtime</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">REST</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ SKILLS ═══════════ -->
+    <section id="skills">
+        <div class="reveal">
+            <div class="section-label">// 02 — Skills</div>
+            <h2 class="section-title">Tech Stack</h2>
+        </div>
+
+        <div class="skills-grid reveal">
+            <div class="skill-group">
+                <h4>Languages</h4>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">Bash / Shell</div>
+                <div class="skill-item">SQL</div>
+            </div>
+            <div class="skill-group">
+                <h4>ML & AI</h4>
+                <div class="skill-item">PyTorch</div>
+                <div class="skill-item">ONNX / TensorRT</div>
+                <div class="skill-item">Model Optimization</div>
+                <div class="skill-item">Claude API / LLMs</div>
+            </div>
+            <div class="skill-group">
+                <h4>Trading & Finance</h4>
+                <div class="skill-item">Algorithmic Trading</div>
+                <div class="skill-item">Technical Analysis</div>
+                <div class="skill-item">Risk Management</div>
+                <div class="skill-item">API Integration</div>
+            </div>
+            <div class="skill-group">
+                <h4>DevOps & Tools</h4>
+                <div class="skill-item">Docker</div>
+                <div class="skill-item">Git / GitHub</div>
+                <div class="skill-item">REST APIs</div>
+                <div class="skill-item">Linux / macOS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CONTACT ═══════════ -->
+    <section id="contact">
+        <div class="reveal">
+            <div class="section-label">// 03 — Kontakt</div>
+            <h2 class="section-title">Let's Connect</h2>
+        </div>
+
+        <div class="contact-links reveal">
+            <a href="https://github.com/SandQeen1111" target="_blank" class="contact-link">
+                ◆ GitHub
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 SandQeen1111 — Built with precision.
+    </footer>
+
+    <script>
+        /* ═══════════ PARTICLES ═══════════ */
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(139, 26, 58, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        /* ═══════════ TYPEWRITER ═══════════ */
+        const commands = [
+            'python train_model.py --epochs 100',
+            'black-swan kompilieren main.schwan',
+            'docker compose up -d trading-bot',
+            'onnx_optimize --model classifier.onnx',
+            'git push origin main'
+        ];
+        let cmdIndex = 0, charIndex = 0;
+        const typeEl = document.getElementById('typewriter');
+
+        function typewrite() {
+            if (charIndex < commands[cmdIndex].length) {
+                typeEl.textContent += commands[cmdIndex][charIndex];
+                charIndex++;
+                setTimeout(typewrite, 45 + Math.random() * 40);
+            } else {
+                setTimeout(() => {
+                    typeEl.textContent = '';
+                    charIndex = 0;
+                    cmdIndex = (cmdIndex + 1) % commands.length;
+                    typewrite();
+                }, 2500);
+            }
+        }
+        setTimeout(typewrite, 1500);
+
+        /* ═══════════ SCROLL REVEAL ═══════════ */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
